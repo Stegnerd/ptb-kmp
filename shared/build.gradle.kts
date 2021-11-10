@@ -29,21 +29,27 @@ kotlin {
     
     sourceSets {
         val commonMain by getting
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+        sourceSets["commonMain"].dependencies {
+
+        }
+
+        sourceSets["commonTest"].dependencies {
+            with(Dependencies.Test) {
+                implementation(kotlinTest)
+                implementation(kotlinTestAnnotations)
             }
         }
-        val androidMain by getting
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-            }
+
+        sourceSets["androidMain"].dependencies {
+
         }
-        val iosMain by getting
-        val iosTest by getting
+        sourceSets["androidTest"].dependencies {
+            implementation(Dependencies.Test.junit)
+            implementation(Dependencies.Test.kotlinTestJUnit)
+        }
+
+        sourceSets["iosMain"].dependencies {  }
+        sourceSets["iosTest"].dependencies {  }
     }
 }
 
