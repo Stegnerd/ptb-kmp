@@ -8,6 +8,20 @@ plugins {
 
 version = "1.0"
 
+android {
+    compileSdk = Versions.androidCompileSdk
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
 kotlin {
     android()
 
@@ -23,12 +37,13 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
         podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "shared"
+        }
     }
     
     sourceSets {
-        val commonMain by getting
         sourceSets["commonMain"].dependencies {
 
         }
@@ -50,14 +65,5 @@ kotlin {
 
         sourceSets["iosMain"].dependencies {  }
         sourceSets["iosTest"].dependencies {  }
-    }
-}
-
-android {
-    compileSdkVersion(30)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdkVersion(30)
-        targetSdkVersion(30)
     }
 }
