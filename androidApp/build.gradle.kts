@@ -3,25 +3,43 @@ plugins {
     kotlin("android")
 }
 
-dependencies {
-    implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-}
 
 android {
-    compileSdkVersion(30)
+    compileSdk = Versions.androidCompileSdk
+
     defaultConfig {
-        applicationId = "com.stegnerd.ptbkmp.android"
-        minSdkVersion(30)
-        targetSdkVersion(30)
+        applicationId = "com.stegnerd.ptbkmp"
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
+
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(Dependencies.Android.material)
+    implementation(Dependencies.AndroidX.appCompat)
+    implementation(Dependencies.AndroidX.constrainLayout)
 }
