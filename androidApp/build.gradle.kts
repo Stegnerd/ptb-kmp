@@ -39,7 +39,18 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(Dependencies.Android.material)
-    implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.constrainLayout)
+
+    implementation(Dependencies.Android.material)
+
+    // androidx
+    implementation(Dependencies.AndroidX.activityCompose)
+    implementation(Dependencies.AndroidX.appCompat)
+    implementation(Dependencies.AndroidX.coreKtx)
+    implementation(Dependencies.AndroidX.lifecycleKtx)
+
+    // compose
+    implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.tooling)
+    implementation(Dependencies.Compose.ui)
 }
