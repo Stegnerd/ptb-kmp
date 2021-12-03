@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.stegnerd.ptbkmp.ui.theme.PtbkmpTheme
+import com.stegnerd.shared.ptbkmp.Greeting
 
 
 class MainActivity : ComponentActivity() {
