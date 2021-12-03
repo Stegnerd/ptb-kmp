@@ -1,4 +1,4 @@
-name: PTB KMP Gradle CI
+name: Ptb Kmp Gradle CI
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+
 
 jobs:
   build:
@@ -23,5 +24,5 @@ jobs:
         # https://github.com/gradle/wrapper-validation-action
         # help detect differences in gradle files to prevent homoglyph attack
         uses: gradle/wrapper-validation-action@v1
-      - name: Build the project
+      - name: Build with Gradle
         run: ./gradlew build
