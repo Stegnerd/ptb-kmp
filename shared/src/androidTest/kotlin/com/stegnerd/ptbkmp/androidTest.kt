@@ -1,5 +1,6 @@
 package com.stegnerd.ptbkmp
 
+import com.stegnerd.shared.ptbkmp.Greeting
 import org.junit.Assert.assertTrue
 import org.junit.Test
 

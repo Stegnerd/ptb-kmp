@@ -1,4 +1,4 @@
-package com.stegnerd.ptbkmp
+package com.stegnerd.shared.ptbkmp
 
 class Greeting {
     fun greeting(): String {
