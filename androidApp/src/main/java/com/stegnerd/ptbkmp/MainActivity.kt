@@ -1,4 +1,4 @@
-package com.stegnerd.ptbkmp.android
+package com.stegnerd.ptbkmp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

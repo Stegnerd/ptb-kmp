@@ -8,6 +8,20 @@ plugins {
 
 version = "1.0"
 
+android {
+    compileSdk = Versions.androidCompileSdk
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
 kotlin {
     android()
 
@@ -23,35 +37,33 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
         podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "shared"
+        }
     }
     
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
-        }
-        val androidMain by getting
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
-            }
-        }
-        val iosMain by getting
-        val iosTest by getting
-    }
-}
+        sourceSets["commonMain"].dependencies {
 
-android {
-    compileSdkVersion(30)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdkVersion(30)
-        targetSdkVersion(30)
+        }
+
+        sourceSets["commonTest"].dependencies {
+            with(Dependencies.Test) {
+                implementation(kotlinTest)
+                implementation(kotlinTestAnnotations)
+            }
+        }
+
+        sourceSets["androidMain"].dependencies {
+
+        }
+        sourceSets["androidTest"].dependencies {
+            implementation(Dependencies.Test.junit)
+            implementation(Dependencies.Test.kotlinTestJUnit)
+        }
+
+        sourceSets["iosMain"].dependencies {  }
+        sourceSets["iosTest"].dependencies {  }
     }
 }
