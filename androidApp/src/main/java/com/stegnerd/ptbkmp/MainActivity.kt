@@ -1,20 +1,38 @@
 package com.stegnerd.ptbkmp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.stegnerd.ptbkmp.Greeting
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.stegnerd.ptbkmp.ui.theme.PtbkmpTheme
 
-fun greet(): String {
-    return Greeting().greeting()
-}
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            PtbkmpTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    Greet()
+                }
+            }
+        }
+    }
+}
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+@Composable
+fun Greet() {
+    Text(text = Greeting().greeting())
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    PtbkmpTheme {
+        Text(text = Greeting().greeting())
     }
 }
