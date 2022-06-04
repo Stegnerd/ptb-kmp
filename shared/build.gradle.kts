@@ -44,12 +44,13 @@ kotlin {
     }
 
     iosTarget("ios") {}
+    macosX64("macos")
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
+        //ios.deploymentTarget = "14.1"
+        //podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
         }
@@ -77,5 +78,8 @@ kotlin {
 
         sourceSets["iosMain"].dependencies {  }
         sourceSets["iosTest"].dependencies {  }
+
+        sourceSets["macosMain"].dependencies {  }
+        sourceSets["macosTest"].dependencies {  }
     }
 }
